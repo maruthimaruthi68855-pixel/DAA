@@ -1,0 +1,77 @@
+/*
+ * ============================================================
+ * Project Title : Selection Sort Algorithm
+ * Author        : Maruthi S
+ * Language      : C
+ * Description   : This program implements Selection Sort
+ *                 to sort an array in ascending order.
+ * ============================================================
+ */
+
+#include <stdio.h>
+
+/*
+ * Function: selectionSort
+ * -----------------------
+ * Sorts an array in ascending order using Selection Sort.
+ *
+ * arr[] : array to be sorted
+ * n     : number of elements
+ */
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+
+        // Assume the current position holds the minimum
+        int minIndex = i;
+
+        // Find the minimum element in remaining unsorted array
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        // Swap the found minimum element with the first element
+        if (minIndex != i) {
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+}
+
+/*
+ * Function: printArray
+ * --------------------
+ * Prints the elements of the array.
+ */
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("\nOriginal Array:\n");
+    printArray(arr, n);
+
+    selectionSort(arr, n);
+
+    printf("\nSorted Array (Ascending Order):\n");
+    printArray(arr, n);
+
+    return 0;
+}
